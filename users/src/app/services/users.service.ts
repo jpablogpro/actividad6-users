@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { IUser } from '../interfaces/iuser.interface';
 import { first, firstValueFrom } from 'rxjs';
+import { IResponse } from '../interfaces/iresponse.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +15,12 @@ export class UsersService {
    * GETALL()
    * return Promise<IUser[]>
    */
-  getAll(page: number): Promise<IUser[]> {
-    return firstValueFrom(this.http.get<IUser[]>(`${this.baseUrl}?page=${page}`))
+  getAll(page: number): Promise<IResponse> {
+    return firstValueFrom(this.http.get<IResponse>(`${this.baseUrl}?page=${page}`))
   }
 
-  getByID(id: string): Promise<IUser> {
-    return firstValueFrom(this.http.get<IUser>(`${this.baseUrl}${id}`))
+  getByID(id: string): Promise<[]> {
+    return firstValueFrom(this.http.get<[]>(`${this.baseUrl}${id}`))
 
   }
 }
