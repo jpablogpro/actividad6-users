@@ -13,10 +13,11 @@ import { UserCardComponent } from '../../components/user-card/user-card.componen
 export class UserListComponent implements OnInit {
   userServices = inject(UsersService);
   usersList: IUser[] = [];
+  page: number = 1;
 
   async ngOnInit() {
     try {
-      const res = await this.userServices.getAll(1);
+      const res = await this.userServices.getAll(this.page);
       this.usersList = res.results;
 
     } catch (error) {
@@ -24,4 +25,8 @@ export class UserListComponent implements OnInit {
     }
   }
 
+  async gotopage(page: number) {
+    const res = await this.userServices.getAll(page);
+    this.usersList = res.results;
+}
 }
