@@ -1,1 +1,12 @@
-<p>user-view works!</p>
+<section class="container mt-3">
+    <h1><strong>{{user?.first_name}} {{user?.last_name}}</strong></h1>
+    <hr>
+    <img src={{user?.image}} class="card-img-top" alt="...">
+    <hr>
+    <h5><strong>Email: </strong> <a [href]="'mailto:' + user?.email">{{user?.email}}</a></h5>
+    <hr>
+    <h5><strong>Usuario: </strong>{{user?.username}}</h5>
+    <h5><strong>Contraseña: </strong>{{user?.password}}</h5>
+    <hr>
+    <a class="btn btn-primary" [routerLink]="['/dashboard', 'home']">Ir a Lista de Usuarios</a>
+</section>
