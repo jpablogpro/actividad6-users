@@ -6,6 +6,6 @@
     <div class="d-flex justify-content-evenly my-3">
       <a class="btn btn-info" [routerLink]="['/dashboard', 'user', myUser._id]"><i class="fa-regular fa-eye"></i></a>
       <a class="btn btn-warning" [routerLink]="['/dashboard', 'updateuser', myUser._id]"><i class="fa-regular fa-pen-to-square"></i></a>
-      <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+      <button class="btn btn-danger" (click)="delete(myUser._id)"><i class="fa-solid fa-trash"></i></button>
     </div>
   </div>

@@ -11,16 +11,17 @@ export class UsersService {
   private baseUrl: string = "https://peticiones.online/api/users/"
   private http = inject(HttpClient);
 
-  /**
-   * GETALL()
-   * return Promise<IUser[]>
-   */
+
   getAll(page: number): Promise<IResponse> {
     return firstValueFrom(this.http.get<IResponse>(`${this.baseUrl}?page=${page}`))
   }
 
-  getByID(id: string): Promise<[]> {
-    return firstValueFrom(this.http.get<[]>(`${this.baseUrl}${id}`))
-
+  getByID(id: string): Promise<IUser> {
+    return firstValueFrom(this.http.get<IUser>(`${this.baseUrl}${id}`))
   }
+
+  deleteByID(id: string | undefined): Promise<IUser> {
+    return firstValueFrom(this.http.delete<IUser>(`${this.baseUrl}${id}`))
+  }
+
 }
