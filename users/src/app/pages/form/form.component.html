@@ -7,15 +7,15 @@
                 <label class="form-label" for="first_name">Nombre</label>
                 <input class="form-control" type="text" id="first_name" formControlName="first_name" placeholder="Introduce el nombre">
                 @if(checkControl('first_name', 'required')) {
-                    <p class="error">El campo es requerido</p>
+                    <p class="error">El nombre es obligatorio</p>
                 }
             </div>
 
             <div class="my-3">
                 <label class="form-label" for="last_name">Apellidos</label>
-                <input class="form-control" type="text" id="last_name" formControlName="last_name" placeholder="Introduce los appellidos">
+                <input class="form-control" type="text" id="last_name" formControlName="last_name" placeholder="Introduce los apellidos">
                 @if(checkControl('last_name', 'required')) {
-                    <p class="error">El campo es requerido</p>
+                    <p class="error">Los apellidos son obligatorios</p>
                 }
             </div>
 
@@ -23,7 +23,7 @@
                 <label class="form-label" for="username">Nombre de usuario</label>
                 <input class="form-control" type="text" id="username" formControlName="username" placeholder="Introduce el nombre de usuario">
                 @if(checkControl('username', 'required')) {
-                    <p class="error">El campo es requerido</p>
+                    <p class="error">El nombre de usuario es obligatorio</p>
                 }
             </div>
 
@@ -31,15 +31,18 @@
                 <label class="form-label" for="email">Email</label>
                 <input class="form-control" type="text" id="email" formControlName="email" placeholder="Introduce el email">
                 @if(checkControl('email', 'required')) {
-                    <p class="error">El campo es requerido</p>
+                    <p class="error">El email es obligatorio</p>
                 }
+                @if(checkControl('email', 'pattern')){
+                    <p class="error">El email es incorrecto</p>
+                    }
             </div>
 
             <div class="my-3">
                 <label class="form-label" for="image">Foto de perfil</label>
                 <input class="form-control" type="text" id="image" formControlName="image" placeholder="Introduce la foto de perfil">
                 @if(checkControl('image', 'required')) {
-                    <p class="error">El campo es requerido</p>
+                    <p class="error">La foto de pertil es obligatoria</p>
                 }
             </div>
 
@@ -47,7 +50,7 @@
                 <label class="form-label" for="password">Contraseña</label>
                 <input class="form-control" type="password" id="password" formControlName="password" placeholder="Introduce la contraseña">
                 @if(checkControl('password', 'required')) {
-                    <p class="error">El campo es requerido</p>
+                    <p class="error">La contraseña es obligatoria</p>
                 }
             </div>
 
@@ -55,8 +58,12 @@
                 <label class="form-label" for="repitepassword">Repite Contraseña</label>
                 <input class="form-control" type="password" id="repitepassword" formControlName="repitepassword" placeholder="Repite la contraseña">
                 @if(checkControl('password', 'required')) {
-                    <p class="error">El campo es requerido</p>
+                    <p class="error">La contraseña es obligatoria</p>
                 }
+                @if(userForm.hasError('checkpassword')) {
+                    <p class="error">Los campos de contraseña deben coincidir</p>
+                }
+
             </div>
 
             <div class="my-3">

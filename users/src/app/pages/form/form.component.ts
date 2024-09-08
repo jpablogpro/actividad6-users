@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UsersService } from '../../services/users.service';
 import { IUser } from '../../interfaces/iuser.interface';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -24,11 +24,14 @@ export class FormComponent {
       first_name: new FormControl(null, [Validators.required]),
       last_name: new FormControl(null, [Validators.required]),
       username: new FormControl(null, [Validators.required]),
-      email: new FormControl(null, [Validators.required]),
+      email: new FormControl(null, [
+        Validators.required, 
+        Validators.pattern(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/)
+      ]),
       image: new FormControl(null, [Validators.required]),
       password: new FormControl(null, [Validators.required]),
       repitepassword: new FormControl(null, [Validators.required]),
-    }, [])
+    }, [this.checkPassword])
   }
 
   ngOnInit() {
@@ -41,11 +44,14 @@ export class FormComponent {
           first_name: new FormControl(user.first_name, [Validators.required]),
           last_name: new FormControl(user.last_name, [Validators.required]),
           username: new FormControl(user.username, [Validators.required]),
-          email: new FormControl(user.email, [Validators.required]),
+          email: new FormControl(user.email, [
+            Validators.required, 
+            Validators.pattern(/^[\w-.]+@([\w-]+\.)+[\w-]{2,6}$/)
+          ]),
           image: new FormControl(user.image, [Validators.required]),
           password: new FormControl(user.password, [Validators.required]),
-          repitepassword: new FormControl(null, [Validators.required]),
-        }, [])
+          repitepassword: new FormControl(user.password, [Validators.required]),
+        }, [this.checkPassword])
       }
     })
   }
@@ -78,5 +84,15 @@ export class FormComponent {
 
   checkControl(formControlName: string, validator: string){
     return this.userForm.get(formControlName)?.hasError(validator) && this.userForm.get(formControlName)?.touched;
+  }
+
+  checkPassword(formValue: AbstractControl): any {
+    const password = formValue.get('password')?.value
+    const repitepassword = formValue.get('repitepassword')?.value
+    if (password !== repitepassword) {
+      return {'checkpassword': true}
+    } else {
+      return null
+    }
   }
 }
