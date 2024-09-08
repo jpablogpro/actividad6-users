@@ -80,7 +80,7 @@ export class FormComponent {
         const response: IUser = await this.usersService.insert(this.userForm.value)
         console.log(response)
         if (response.id) {
-          let alert_res: AlertResponse = {title: 'Perfecto!', text: 'Usuario con ID: ' + response.id + ' Creado con exito', icon: 'success', cbutton: 'Aceptar'}
+          let alert_res: AlertResponse = {title: 'Perfecto!', text: 'Usuario creado con exito', icon: 'success', cbutton: 'Aceptar'}
           Swal.fire(alert_res)
           this.router.navigate(['/dashboard', 'home'])
   

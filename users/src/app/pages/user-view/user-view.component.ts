@@ -29,7 +29,7 @@ export class UserViewComponent {
   }
 
   async delete(_id: string | undefined) {
-    let borrado = confirm('Deseas Borrar el Usuario con ID: ' + _id + '?');
+    let borrado = confirm('Seguro que deseas borrar el usuario ' + this.user?.first_name + '?');
     if (borrado) {
       let alert_res: AlertResponse;
       try {
