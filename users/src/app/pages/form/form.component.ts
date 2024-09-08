@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UsersService } from '../../services/users.service';
 import { IUser } from '../../interfaces/iuser.interface';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -21,12 +21,13 @@ export class FormComponent {
 
   constructor() {
     this.userForm = new FormGroup({
-      first_name: new FormControl(null, []),
-      last_name: new FormControl(null, []),
-      username: new FormControl(null, []),
-      email: new FormControl(null, []),
-      image: new FormControl(null, []),
-      password: new FormControl(null, []),
+      first_name: new FormControl(null, [Validators.required]),
+      last_name: new FormControl(null, [Validators.required]),
+      username: new FormControl(null, [Validators.required]),
+      email: new FormControl(null, [Validators.required]),
+      image: new FormControl(null, [Validators.required]),
+      password: new FormControl(null, [Validators.required]),
+      repitepassword: new FormControl(null, [Validators.required]),
     }, [])
   }
 
@@ -37,12 +38,13 @@ export class FormComponent {
         const user: IUser = await this.usersService.getByID(params.id)
         this.userForm = new FormGroup({
           _id: new FormControl(user._id, []),
-          first_name: new FormControl(user.first_name, []),
-          last_name: new FormControl(user.last_name, []),
-          username: new FormControl(user.username, []),
-          email: new FormControl(user.email, []),
-          image: new FormControl(user.image, []),
-          password: new FormControl(user.password, []),
+          first_name: new FormControl(user.first_name, [Validators.required]),
+          last_name: new FormControl(user.last_name, [Validators.required]),
+          username: new FormControl(user.username, [Validators.required]),
+          email: new FormControl(user.email, [Validators.required]),
+          image: new FormControl(user.image, [Validators.required]),
+          password: new FormControl(user.password, [Validators.required]),
+          repitepassword: new FormControl(null, [Validators.required]),
         }, [])
       }
     })
@@ -72,5 +74,9 @@ export class FormComponent {
         console.log(error)
       }
     }
+  }
+
+  checkControl(formControlName: string, validator: string){
+    return this.userForm.get(formControlName)?.hasError(validator) && this.userForm.get(formControlName)?.touched;
   }
 }
