@@ -3,6 +3,10 @@ import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validator
 import { UsersService } from '../../services/users.service';
 import { IUser } from '../../interfaces/iuser.interface';
 import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import { SweetAlertIcon } from 'sweetalert2';
+
+type AlertResponse = { title: string; text: string; icon: SweetAlertIcon, cbutton: string};
 
 @Component({
   selector: 'app-form',
@@ -19,6 +23,8 @@ export class FormComponent {
   userForm: FormGroup;
   tipo_form: string = 'Nuevo';
 
+  email_pattern = /^[\w-.]+@([\w-]+\.)+[\w-]{2,6}$/
+
   constructor() {
     this.userForm = new FormGroup({
       first_name: new FormControl(null, [Validators.required]),
@@ -26,7 +32,7 @@ export class FormComponent {
       username: new FormControl(null, [Validators.required]),
       email: new FormControl(null, [
         Validators.required, 
-        Validators.pattern(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/)
+        Validators.pattern(this.email_pattern)
       ]),
       image: new FormControl(null, [Validators.required]),
       password: new FormControl(null, [Validators.required]),
@@ -46,7 +52,7 @@ export class FormComponent {
           username: new FormControl(user.username, [Validators.required]),
           email: new FormControl(user.email, [
             Validators.required, 
-            Validators.pattern(/^[\w-.]+@([\w-]+\.)+[\w-]{2,6}$/)
+            Validators.pattern(this.email_pattern)
           ]),
           image: new FormControl(user.image, [Validators.required]),
           password: new FormControl(user.password, [Validators.required]),
@@ -61,7 +67,8 @@ export class FormComponent {
       try{
         const response: IUser = await this.usersService.update(this.userForm.value)
         if (response._id && response._id === this.userForm.value._id) {
-          alert('Usuario Actualizado con Exito')
+          let alert_res: AlertResponse = {title: 'Perfecto!', text: 'Usuario con ID: ' + response._id + ' Actualizado con exito', icon: 'success', cbutton: 'Aceptar'}
+          Swal.fire(alert_res)
           this.router.navigate(['/dashboard', 'home'])
         }
       } catch (error) {
@@ -73,6 +80,8 @@ export class FormComponent {
         const response: IUser = await this.usersService.insert(this.userForm.value)
         console.log(response)
         if (response.id) {
+          let alert_res: AlertResponse = {title: 'Perfecto!', text: 'Usuario con ID: ' + response.id + ' Creado con exito', icon: 'success', cbutton: 'Aceptar'}
+          Swal.fire(alert_res)
           this.router.navigate(['/dashboard', 'home'])
   
         }
