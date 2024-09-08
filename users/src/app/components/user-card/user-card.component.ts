@@ -19,7 +19,7 @@ export class UserCardComponent {
   usersService = inject(UsersService);
 
   async delete(_id: string | undefined) {
-    let borrado = confirm('Deseas Borrar el Usuario con ID: ' + _id + '?');
+    let borrado = confirm('Deseas Borrar el Usuario con Nombre: ' + this.myUser.first_name + '?');
     if (borrado) {
       let alert_res: AlertResponse;
       try {
