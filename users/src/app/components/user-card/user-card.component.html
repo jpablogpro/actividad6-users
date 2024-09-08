@@ -1,11 +1,19 @@
-<div class="card h-100" style="width: 18rem;">
-    <img src={{myUser.image}} class="card-img-top" alt="...">
-    <div class="card-body">
-        <h5 class="card-title">{{myUser.first_name}} {{myUser.last_name}}</h5>
-    </div>
-    <div class="d-flex justify-content-evenly my-3">
-      <a class="btn btn-info" [routerLink]="['/dashboard', 'user', myUser._id]"><i class="fa-regular fa-eye"></i></a>
-      <a class="btn btn-warning" [routerLink]="['/dashboard', 'updateuser', myUser._id]"><i class="fa-regular fa-pen-to-square"></i></a>
-      <button class="btn btn-danger" (click)="delete(myUser._id)"><i class="fa-solid fa-trash"></i></button>
-    </div>
+<div class="card h-100" style="width: 18rem">
+  <img src="{{ myUser.image }}" class="card-img-top" alt="..." />
+  <div class="card-body">
+    <h5 class="card-title">{{ myUser.first_name }} {{ myUser.last_name }}</h5>
   </div>
+  <div class="d-flex justify-content-evenly my-3">
+    <a class="btn btn-info" [routerLink]="['/dashboard', 'user', myUser._id]"
+      ><i class="fa-regular fa-eye"></i
+    ></a>
+    <a
+      class="btn btn-warning"
+      [routerLink]="['/dashboard', 'updateuser', myUser._id]"
+      ><i class="fa-regular fa-pen-to-square"></i
+    ></a>
+    <button class="btn btn-danger" (click)="delete(myUser._id)">
+      <i class="fa-solid fa-trash"></i>
+    </button>
+  </div>
+</div>
