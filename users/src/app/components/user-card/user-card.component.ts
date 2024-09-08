@@ -28,7 +28,6 @@ export class UserCardComponent {
           alert_res = {title: 'Perfecto!', text: 'Usuario con ID: ' + _id + ' Borrado con exito', icon: 'success', cbutton: 'Aceptar'}
         } else {
           let text: string;
-          // text = ('error' in res) ?  res.error: 'Usuario con ID: ' + _id + ' Borrado con exito'
           text = ('error' in res) ?  'Ha ocurrido un error' : 'Usuario con ID: ' + _id + ' No encontrado'
           alert_res = {title: 'Error!', text: text, icon: 'error', cbutton: 'Aceptar'}
         }
