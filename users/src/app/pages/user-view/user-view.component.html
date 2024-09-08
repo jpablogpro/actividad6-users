@@ -1,12 +1,37 @@
-<section class="container mt-3">
-    <h1><strong>{{user?.first_name}} {{user?.last_name}}</strong></h1>
-    <hr>
-    <img src={{user?.image}} class="card-img-top" alt="...">
-    <hr>
-    <h5><strong>Email: </strong> <a [href]="'mailto:' + user?.email">{{user?.email}}</a></h5>
-    <hr>
-    <h5><strong>Usuario: </strong>{{user?.username}}</h5>
-    <h5><strong>Contraseña: </strong>{{user?.password}}</h5>
-    <hr>
-    <a class="btn btn-primary" [routerLink]="['/dashboard', 'home']">Ir a Lista de Usuarios</a>
+<section class="mt-5">
+  <div class="card mb-3 border-0 shadow p-4">
+    <div class="row g-0">
+      <div class="col-md-6">
+        <img
+          src="{{ user?.image }}"
+          class="img-fluid rounded-circle mx-auto d-block"
+          alt="{{ user?.first_name }}"
+        />
+      </div>
+      <div class="col-md-6 border-start border-dark">
+        <div class="card-body m-5">
+          <h2>
+            <strong>{{ user?.first_name }}</strong>
+          </h2>
+          <h2>
+            <strong>{{ user?.last_name }}</strong>
+          </h2>
+
+          <p class="card-text mt-5">
+            <strong>Nombre de usuario: </strong>{{ user?.username }}
+          </p>
+          <p class="card-text">
+            <strong>Email: </strong>
+            <a [href]="'mailto:' + user?.email">{{ user?.email }}</a>
+          </p>
+
+          <div class="d-flex mt-5">
+            <a class="btn btn-outline-secondary m-2">Eliminar</a>
+            <a class="btn btn-outline-secondary m-2">Actualizar</a>
+            <a class="btn btn-outline-secondary m-2" [routerLink]="['/dashboard', 'home']">Volver a Listado</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
