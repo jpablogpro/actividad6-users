@@ -1,19 +1,19 @@
-<div class="mt-5">
-  <nav>
-  <ul class="pagination pagination-md justify-content-center">
-    <li class="page-item">
-      <button class="page-link" (click)="gotopage(1)">1</button>
-    </li>
-    <li class="page-item">
-      <button class="page-link" (click)="gotopage(2)">2</button>
-    </li>
-  </ul>
-</nav>
-</div>
-<div class="row">
+<div class="row mt-5">
   @for(user of usersList; track user.id){
   <article class="col-12 col-md-6 col-xl-4 g-2 p-3">
     <app-user-card [myUser]="user"></app-user-card>
   </article>
   }
+</div>
+<div class="mt-5">
+  <nav>
+  <ul class="pagination pagination-lg justify-content-center">
+    <li class="page-item p-3">
+      <button class="page-link" (click)="gotopage(1)">1</button>
+    </li>
+    <li class="page-item p-3">
+      <button class="page-link" (click)="gotopage(2)">2</button>
+    </li>
+  </ul>
+</nav>
 </div>
