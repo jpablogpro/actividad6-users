@@ -17,7 +17,7 @@ export class FormComponent {
   activatedRoute = inject(ActivatedRoute);
 
   userForm: FormGroup;
-  tipo_form: string = 'Insertar';
+  tipo_form: string = 'Nuevo';
 
   constructor() {
     this.userForm = new FormGroup({
